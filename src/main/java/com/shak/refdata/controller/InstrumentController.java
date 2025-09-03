@@ -7,6 +7,7 @@ import com.shak.refdata.entity.Instrument;
 import com.shak.refdata.exception.ResourceNotFoundException;
 import com.shak.refdata.mapper.InstrumentMapper;
 import com.shak.refdata.service.InstrumentService;
+
 import jakarta.validation.Valid;
 
 import org.springframework.data.domain.Page;
@@ -72,6 +73,22 @@ public class InstrumentController {
         instrumentService.deleteInstrument(id);
         return ResponseEntity.noContent().build();
     }
+    
+    //Search API
+    @GetMapping("/search")
+	public ResponseEntity<Page<InstrumentResponseDto>> searchInstruments(
+			@RequestParam(required = false) String isin,
+			@RequestParam(required = false) String ticker,
+			@RequestParam(required = false) String exchange,
+			@RequestParam(required = false) String currency,
+			Pageable pageable) {
+
+		Page<InstrumentResponseDto> result = instrumentService
+				.searchInstruments(isin, ticker, exchange, currency, pageable)
+				.map(InstrumentMapper::toDto);
+
+		return ResponseEntity.ok(result);
+	}
       
     
 }

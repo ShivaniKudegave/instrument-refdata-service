@@ -42,14 +42,14 @@ public class InstrumentService {
 		instrumentRepository.deleteById(id);
 	}
 	
-//	public Page<Instrument> searchInstruments(String isin, String ticker, String exchange, String currency, Pageable pageable) {
-//	    Specification<Instrument> spec = Specification
-//	    		.where(InstrumentSpecification.hasIsin(isin))
-//	            .and(InstrumentSpecification.hasTicker(ticker))
-//	            .and(InstrumentSpecification.hasExchange(exchange))
-//	            .and(InstrumentSpecification.hasCurrency(currency));
-//
-//	    return instrumentRepository.findAll(spec, pageable);
-//	}
+	public Page<Instrument> searchInstruments(String isin, String ticker, String exchange, String currency, Pageable pageable) {
+	    Specification<Instrument> spec = Specification
+	    		.where(InstrumentSpecification.hasIsin(isin))
+	            .and(InstrumentSpecification.hasTicker(ticker))
+	            .and(InstrumentSpecification.hasExchange(exchange))
+	            .and(InstrumentSpecification.hasCurrency(currency));
+
+	    return instrumentRepository.findAll(spec, pageable);
+	}
 	
 }
