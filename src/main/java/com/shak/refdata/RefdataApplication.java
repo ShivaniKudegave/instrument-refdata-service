@@ -7,5 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RefdataApplication {
     public static void main(String[] args) {
         SpringApplication.run(RefdataApplication.class, args);
+        System.out.println("Application Started.............");
     }
 }
